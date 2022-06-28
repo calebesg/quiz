@@ -6,7 +6,7 @@ const quests: QuestModel[] = [
     AnswerModel.wrong("Abelha"),
     AnswerModel.wrong("Barata"),
     AnswerModel.wrong("Pulga"),
-    AnswerModel.wrong("Barbeiro"),
+    AnswerModel.right("Barbeiro"),
   ]),
   new QuestModel(
     202,
@@ -15,20 +15,20 @@ const quests: QuestModel[] = [
       AnswerModel.wrong("Caju"),
       AnswerModel.wrong("Côco"),
       AnswerModel.wrong("Chuchu"),
-      AnswerModel.wrong("Abóbora"),
+      AnswerModel.right("Abóbora"),
     ]
   ),
   new QuestModel(203, "Qual é o coletivo de cães?", [
     AnswerModel.wrong("Manada"),
     AnswerModel.wrong("Alcateia"),
     AnswerModel.wrong("Rebanho"),
-    AnswerModel.wrong("Matilha"),
+    AnswerModel.right("Matilha"),
   ]),
   new QuestModel(204, "Qual é o triângulo que tem todos os lados diferentes?", [
     AnswerModel.wrong("Equilátero"),
     AnswerModel.wrong("Isóceles"),
     AnswerModel.wrong("Trapézio"),
-    AnswerModel.wrong("Escaleno"),
+    AnswerModel.right("Escaleno"),
   ]),
 ];
 

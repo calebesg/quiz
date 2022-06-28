@@ -8,7 +8,7 @@ function getById(req: NextApiRequest, res: NextApiResponse) {
 
   if (!quest) return res.status(204).send(null);
 
-  return res.status(200).json(quest);
+  return res.status(200).json(quest.randomizedAnswers());
 }
 
 export default getById;
