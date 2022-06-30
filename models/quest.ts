@@ -39,4 +39,16 @@ export class QuestModel {
       this.getIsRight
     );
   }
+
+  revelQuestion(position: number): QuestModel {
+    const updatedAnswers = this.answers.map((answer, index) => {
+      const selectedAnswers = position === index;
+      const revel = selectedAnswers || answer.getIsRight;
+      return revel ? answer.revelAnswer() : answer;
+    });
+
+    const isRight = this.answers[position]?.getIsRight;
+
+    return new QuestModel(this.getId, this.getQuest, updatedAnswers, isRight);
+  }
 }

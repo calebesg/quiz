@@ -24,4 +24,8 @@ export class AnswerModel {
   get getReveled() {
     return this.reveled;
   }
+
+  revelAnswer(): AnswerModel {
+    return new AnswerModel(this.getValue, this.getIsRight, true);
+  }
 }
