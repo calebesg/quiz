@@ -19,7 +19,7 @@ export default function Answer(props: AnswerProps) {
       onClick={() => props.selectQuestion(props.index)}
     >
       <div className={styles.wrapper}>
-        <div className={styles.content}>
+        {/* <div className={styles.content}>
           <span
             style={{ backgroundColor: background }}
             className={styles.letter}
@@ -27,8 +27,20 @@ export default function Answer(props: AnswerProps) {
             {letter}
           </span>
           <strong className={styles.value}>{value.getValue}</strong>
+        </div> */}
+        <div className={styles.sided}>
+          {value.getIsRight ? (
+            <div className={styles.right}>
+              <div>A resposta certa é...</div>
+              <div className={styles.value}>{value.getValue}</div>
+            </div>
+          ) : (
+            <div className={styles.wrong}>
+              <div>A resposta informada está errada...</div>
+              <div className={styles.value}>{value.getValue}</div>
+            </div>
+          )}
         </div>
-        <div className={styles.sided}></div>
       </div>
     </div>
   );
