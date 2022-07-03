@@ -7,13 +7,17 @@ interface AnswerProps {
   index: number;
   letter: string;
   background: string;
+  selectQuestion: (index: number) => void;
 }
 
 export default function Answer(props: AnswerProps) {
   const { background, letter, value } = props;
 
   return (
-    <div className={styles.answer}>
+    <div
+      className={styles.answer}
+      onClick={() => props.selectQuestion(props.index)}
+    >
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <span
