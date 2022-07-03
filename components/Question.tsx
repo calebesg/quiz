@@ -1,6 +1,7 @@
 import { QuestModel } from "../models/quest";
 import styles from "../styles/components/Question.module.css";
 import Answer from "./Answer";
+import { Timer } from "./Times";
 import Wording from "./Wording";
 
 const letters = [
@@ -12,10 +13,17 @@ const letters = [
 
 interface QuestionProps {
   value: QuestModel;
+  timeToRespond?: number;
   selectQuestion: (index: number) => void;
+  timeOut: () => void;
 }
 
-export default function Question({ value, selectQuestion }: QuestionProps) {
+export default function Question({
+  value,
+  timeToRespond,
+  selectQuestion,
+  timeOut,
+}: QuestionProps) {
   const renderAnswers = function () {
     return value.getAnswers.map((value, index) => {
       return (
@@ -34,6 +42,7 @@ export default function Question({ value, selectQuestion }: QuestionProps) {
   return (
     <div className={styles.question}>
       <Wording value={value.getQuest} />
+      <Timer duration={timeToRespond ?? 10} timeOut={timeOut} />
       {renderAnswers()}
     </div>
   );
