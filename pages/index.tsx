@@ -20,9 +20,18 @@ function Home() {
     setQuestion(question.revelQuestion(index));
   };
 
+  const timeOut = function () {
+    setQuestion(question.revelQuestion(-1));
+  };
+
   return (
     <div className={styles.container}>
-      <Question value={question} selectQuestion={selectQuestion} />
+      <Question
+        value={question}
+        timeToRespond={15}
+        selectQuestion={selectQuestion}
+        timeOut={timeOut}
+      />
     </div>
   );
 }
