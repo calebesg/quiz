@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Question from "../components/Question";
+import Questionnaire from "../components/Questionnaire";
 import { AnswerModel } from "../models/answer";
 import { QuestModel } from "../models/quest";
 
@@ -15,22 +15,15 @@ const questionMock = new QuestModel(1, "Qual sua cor favorita?", [
 function Home() {
   const [question, setQuestion] = useState(questionMock);
 
-  const selectQuestion = function (index: number) {
-    console.log(index);
-    setQuestion(question.revelQuestion(index));
-  };
-
-  const timeOut = function () {
-    setQuestion(question.revelQuestion(-1));
-  };
+  const questionFinished = (question: QuestModel) => {};
 
   return (
     <div className={styles.container}>
-      <Question
-        value={question}
-        timeToRespond={15}
-        selectQuestion={selectQuestion}
-        timeOut={timeOut}
+      <Questionnaire
+        question={question}
+        finish
+        nextStep={() => {}}
+        questionFinished={questionFinished}
       />
     </div>
   );
