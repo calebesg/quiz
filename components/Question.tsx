@@ -25,8 +25,6 @@ export default function Question({
   timeOut,
 }: QuestionProps) {
   const renderAnswers = function () {
-    // console.log(value);
-
     return value.getAnswers.map((value, index) => {
       return (
         <Answer
@@ -44,7 +42,11 @@ export default function Question({
   return (
     <div className={styles.question}>
       <Wording value={value.getQuest} />
-      <Timer duration={timeToRespond ?? 10} timeOut={timeOut} />
+      <Timer
+        key={value.getId}
+        duration={timeToRespond ?? 10}
+        timeOut={timeOut}
+      />
       {renderAnswers()}
     </div>
   );
