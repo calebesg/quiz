@@ -43,6 +43,7 @@
   opacity: 0;
   transform: rotateY(180deg);
 }
+
 .reveled.wrapper .sided {
   opacity: 1;
 }
