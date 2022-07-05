@@ -51,4 +51,12 @@ export class QuestModel {
 
     return new QuestModel(this.getId, this.getQuest, updatedAnswers, isRight);
   }
+
+  static jsonToObjectModel(obj: QuestModel): QuestModel {
+    const answersModel = obj.answers.map((answer) =>
+      AnswerModel.jsonToObjectModel(answer)
+    );
+
+    return new QuestModel(obj.id, obj.quest, answersModel, obj.isRight);
+  }
 }

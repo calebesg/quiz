@@ -28,4 +28,8 @@ export class AnswerModel {
   revelAnswer(): AnswerModel {
     return new AnswerModel(this.getValue, this.getIsRight, true);
   }
+
+  static jsonToObjectModel(obj: AnswerModel): AnswerModel {
+    return new AnswerModel(obj.value, obj.isRight, obj.reveled);
+  }
 }

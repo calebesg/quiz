@@ -25,6 +25,8 @@ export default function Question({
   timeOut,
 }: QuestionProps) {
   const renderAnswers = function () {
+    // console.log(value);
+
     return value.getAnswers.map((value, index) => {
       return (
         <Answer
