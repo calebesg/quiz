@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Questionnaire from "../components/Questionnaire";
 import { QuestModel } from "../models/quest";
 
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = process.env.API_URL;
 
 function Home() {
   const router = useRouter();
