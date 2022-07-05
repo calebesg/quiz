@@ -7,7 +7,7 @@ import Button from "./Button";
 interface QuestionnaireProps {
   question: QuestModel;
   finish: boolean;
-  questionFinished: (question: QuestModel) => void;
+  answerQuestionnaire: (question: QuestModel) => void;
   nextStep: () => void;
 }
 
@@ -16,7 +16,7 @@ export default function Questionnaire(props: QuestionnaireProps) {
 
   const answerQuestion = function (index: number) {
     if (props.question.answered) return;
-    props.questionFinished(props.question.revelQuestion(index));
+    props.answerQuestionnaire(props.question.revelQuestion(index));
   };
 
   return (

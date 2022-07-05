@@ -1,18 +1,13 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Questionnaire from "../components/Questionnaire";
-import { AnswerModel } from "../models/answer";
 import { QuestModel } from "../models/quest";
-
-const questionMock = new QuestModel(1, "Qual sua cor favorita?", [
-  AnswerModel.wrong("Verde"),
-  AnswerModel.wrong("Amarela"),
-  AnswerModel.wrong("Branca"),
-  AnswerModel.right("Azul"),
-]);
 
 const BASE_URL = "http://localhost:3000/api";
 
 function Home() {
+  const router = useRouter();
+
   const [questionsIds, setQuestionsIds] = useState<number[]>([]);
   const [question, setQuestion] = useState<QuestModel>();
   const [totalHits, setTotalHits] = useState(0);
@@ -41,19 +36,41 @@ function Home() {
     fetchTargetQuestion(questionsIds[0]);
   }, [questionsIds]);
 
-  const questionFinished = (question: QuestModel) => {
+  const answerQuestionnaire = (question: QuestModel) => {
     setQuestion(question);
     question.getIsRight && setTotalHits(totalHits + 1);
   };
+
+  const nextQuestionId = () => {
+    if (!question) return;
+
+    const nextIndex = questionsIds.indexOf(question.getId) + 1;
+    return questionsIds[nextIndex];
+  };
+
+  const nextStep = () => {
+    const nextId = nextQuestionId();
+    nextId ? nextQuestion(nextId) : finish();
+  };
+
+  const nextQuestion = (id: number) => {
+    fetchTargetQuestion(id);
+  };
+
+  const finish = () =>
+    router.push({
+      pathname: "/result",
+      query: { total: questionsIds.length, score: totalHits },
+    });
 
   if (!question) return null;
 
   return (
     <Questionnaire
       question={question}
-      finish
-      nextStep={() => {}}
-      questionFinished={questionFinished}
+      finish={nextQuestionId() === undefined}
+      nextStep={nextStep}
+      answerQuestionnaire={answerQuestionnaire}
     />
   );
 }
